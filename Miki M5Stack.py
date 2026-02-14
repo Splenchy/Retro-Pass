@@ -1,0 +1,285 @@
+from m5stack import lcd
+from machine import Pin
+from m5stack import speaker
+import neopixel 
+import os
+import time
+# -------------------------------------------------
+# 1. Fond général
+# -------------------------------------------------
+# -------------------------------------------------
+# 2. Bandeau violet rétro EN BAS avec "Miki"
+# -------------------------------------------------
+# Rectangle violet néon + coins arrondis
+lcd.rect(0, 180, 340, 60, 0, 0x1BFFFF)
+np = neopixel.NeoPixel(Pin(15), 10)
+  # position y=180 → tout en bas
+choice=""
+lcd.setTextColor(lcd.BLACK)
+dialogs_expressions=[
+    ["Mike?! Qu'est ce que tu fait en 1992?!","/flash/img/Miki_worried.png"],
+    ["Bref... je vais essayer de t'aider.","/flash/img/Miki_worried.png"],
+    ["Je ne peux pas te promettre de reussir.","/flash/img/Miki_worried.png"],
+    ["Tu vas devoir travailler avec    moi","/flash/img/Miki_worried.png"],
+    ["Il faudra resoudre des enigmes pour avoir des indices","/flash/img/Miki_worried.png"],
+    ["Essaie deja de finir le snake.","/flash/img/Miki_main.png"],
+    ["Dis moi quel indice tu as trouve :","/flash/img/Miki_happy.png"],
+    ["         15         69          36","/flash/img/Miki_happy.png"],
+    ["Note cela quelque part au cas   ou","/flash/img/Miki_main.png"],
+    ["Bravo! On peut passer a la suite Mike.","/flash/img/Miki_happy.png"],
+    ["Il nous faudrait encore d'autres indices","/flash/img/Miki_main.png"],
+    ["Le mot de passe du PC est :           '1973bestyear'","/flash/img/Miki_main.png"],
+    ["Je t'ai mis de l'aide dessus donc a toi de jouer Mike", "/flash/img/Miki_main.png"],
+    ["Les fichiers sont peut-etre         corrompus", "/flash/img/Miki_worried.png"],
+    ["Commence par decrypter le       poeme", "/flash/img/Miki_main.png"],
+    ["Il t'aidera a trouver un badge", "/flash/img/Miki_main.png"],
+    ["         52         83          67","/flash/img/Miki_happy.png"],
+    ["Youhou tu as trouve le badge!!!","/flash/img/Miki_happy.png"],
+    ["Si tu trouve un fichier suspect   j'ai un conseil:","/flash/img/Miki_main.png"],
+    ["Utilise la commande 'binwalk'   pour l'inspecter","/flash/img/Miki_main.png"],
+    ["Puis la commande 'binwalk -e'   pour extraire ce qu'il y a","/flash/img/Miki_main.png"],
+    ["Dis moi ce que tu y trouve :", "/flash/img/Miki_main.png"],
+    ["         122         101          54","/flash/img/Miki_main.png"],
+    ["Bravoooo!","/flash/img/Miki_main.png"],
+    ["Il ne te manque plus qu'un 1      indice Mike!!","/flash/img/Miki_main.png"],
+    ["Tu voudrais que je te le donne...?","/flash/img/Miki_teasing.png"],
+    ["T'as aucune chance de le          trouver de toute maniere","/flash/img/Miki_teasing.png"],
+    ["Allez tiens","/flash/img/Miki_teasing.png"],
+    ["Le voici","/flash/img/Miki_teasing.png"],
+    ["C'est ....","/flash/img/Miki_teasing.png"],
+    ["                  10","/flash/img/Miki_main.png"],
+    ["T'as plus qu'a tout assembler   Mike!!!","/flash/img/Miki_happy.png"],
+    ["Une fois que t'auras le mot de  passe,", "/flash/img/Miki_main.png"],
+    ["Tu n'auras qu'a te connecter sur la machine","/flash/img/Miki_main.png"],
+    ["C'etait tout pour l'aide de ta     charamante Miki!","/flash/img/Miki_teasing.png"],
+    ["Allez Mike! Je sais que tu peux  le faire!!!","/flash/img/Miki_main.png"]
+
+  
+  ]
+# -------------------------------------------------
+# 3. Zone à effacer pour le visage (au centre)
+# -------------------------------------------------
+def clear_face_area():
+    lcd.rect(0, 0, 320, 180, 0xFF69B4, 0xFF69B4)   # efface uniquement le visage
+def clear_text_area():
+    lcd.rect(0, 180, 340, 60, 0, 0x1BFFFF)
+
+#Dialogue suivant
+def forward():  
+  global indiceDialogue
+  indiceDialogue+=1
+  if indiceDialogue < len(dialogs_expressions):
+    clear_text_area()
+    if dialogs_expressions[indiceDialogue][1] != dialogs_expressions[indiceDialogue-1][1]:
+      clear_face_area()
+    lcd.print(dialogs_expressions[indiceDialogue][0],0,198)
+    lcd.image(90, 33, dialogs_expressions[indiceDialogue][1])
+  else:
+    indiceDialogue -= 1
+
+#Dialogue précédent
+def backward(): 
+  global indiceDialogue
+  indiceDialogue-=1
+  if indiceDialogue < 0:
+    indiceDialogue = 0
+  clear_text_area()
+  lcd.print(dialogs_expressions[indiceDialogue][0],0,198)
+  lcd.image(90, 33, dialogs_expressions[indiceDialogue][1])
+  
+
+
+#Affichage des coeurs en fonction de la vie
+def hearts():
+  global life
+  for i in range(life):
+    spacing=5
+    pos_x = x+1-spacing*i*5
+    try:
+        lcd.image(pos_x, 5, "/flash/img/heart.png")
+    except:
+        # Fallback: draw text heart if image missing
+        lcd.setTextColor(0xFF0066)
+  #lcd.image(x+1-5*life, 5, "/flash/img/heart.png")
+  #lcd.image(x+1-10*life, 5, "/flash/img/heart.png")
+
+#Écran de game over en cas de life = 0
+def gameOver():
+  global life
+  global indiceDialogue
+  clear_text_area()
+  clear_face_area()
+  lcd.print("Oh non!? Tu as perdu toutes tes vies...", 0, 198)
+  lcd.image(90, 33, "/flash/img/Miki_worried.png")
+  time.sleep(2)
+  clear_text_area()
+  lcd.print("Maintenant te voila bloque avec moi dans le passe", 0, 198)
+  time.sleep(3)
+  clear_text_area()
+  clear_face_area()
+  speaker.setVolume(2)
+  speaker.tone(1479, 400)
+  time.sleep(0.2)
+  speaker.tone(1479, 400)
+  speaker.tone(987, 200)
+  lcd.print("Game Over", 0, 198)
+  time.sleep(5)
+  clear_text_area()
+  life = 5
+  indiceDialogue = 0
+  lcd.setTextColor(lcd.BLACK)
+  indiceDialogue=0
+  lcd.print(dialogs_expressions[indiceDialogue][0],0,198)
+  clear_face_area()
+  lcd.image(90, 33, "/flash/img/Miki_worried.png")
+
+
+
+
+# 4. Son de bienvenue
+
+
+speaker.setVolume(2)
+speaker.tone(1479, 200)
+speaker.tone(1244, 200)
+speaker.tone(1318, 200)
+speaker.tone(1479, 400)
+
+np[1] = (255, 0, 100)
+np[6] = (255, 0, 100)
+np.write()
+
+life = 5
+x=288
+
+
+lcd.setTextColor(lcd.BLACK)
+indiceDialogue=0
+lcd.print(dialogs_expressions[indiceDialogue][0],0,198)
+clear_face_area()
+lcd.image(90, 33, "/flash/img/Miki_worried.png")
+while True:
+
+  if btnC.wasPressed():
+    forward()
+
+  
+  if btnA.wasPressed():
+    backward()
+  
+  if indiceDialogue == 7:
+    hearts()
+    while (choice != "b"):
+      if life == 0:
+        break
+      else:
+        if btnB.wasPressed():  
+          choice = "b"
+          print(choice)
+          clear_face_area()
+        if btnA.wasPressed() or btnC.wasPressed():
+          choice=""
+          life -= 1
+          clear_text_area()
+          clear_face_area()
+          lcd.print("Oh!? Mauvaise reponse...",0,198)
+          lcd.image(90, 33, "/flash/img/Miki_worried.png")
+          time.sleep(1)
+          clear_text_area()
+          clear_face_area()
+          lcd.print(dialogs_expressions[7][0],0,198)
+          lcd.image(90, 33, dialogs_expressions[7][1])
+          hearts()
+          print(choice)
+    if life == 0:
+      gameOver()
+    else:
+      forward()
+      print(indiceDialogue)
+    
+  if indiceDialogue == 16:
+    hearts()
+    while (choice != "c"):
+      if life == 0:
+        break
+      else:
+        if btnC.wasPressed():  
+          choice = "c"
+          print(choice)
+          clear_face_area()
+        if btnA.wasPressed() or btnB.wasPressed():
+          choice=""
+          life -= 1
+          clear_text_area()
+          clear_face_area()
+          lcd.print("Oh!? Mauvaise reponse...",0,198)
+          lcd.image(90, 33, "/flash/img/Miki_worried.png")
+          time.sleep(1)
+          clear_text_area()
+          clear_face_area()
+          lcd.print(dialogs_expressions[16][0],0,198)
+          lcd.image(90, 33, dialogs_expressions[16][1])
+          hearts()
+          print(choice)
+    if life == 0:
+      gameOver()
+    else:
+      forward()
+      print(indiceDialogue)
+    
+
+  if indiceDialogue == 22:
+    hearts()
+    while (choice != "b"):
+      if life == 0:
+        break
+      else:
+        if btnB.wasPressed():  
+          choice = "b"
+          print(choice)
+          clear_face_area()
+        if btnA.wasPressed() or btnC.wasPressed():
+          choice=""
+          life -= 1
+          clear_text_area()
+          clear_face_area()
+          lcd.print("Oh!? Mauvaise reponse...",0,198)
+          lcd.image(90, 33, "/flash/img/Miki_worried.png")
+          time.sleep(1)
+          clear_text_area()
+          clear_face_area()
+          lcd.print(dialogs_expressions[21][0],0,198)
+          lcd.image(90, 33, dialogs_expressions[21][1])
+          hearts()
+          print(choice)
+    if life == 0:
+      gameOver()
+    else:
+      forward()
+      print(indiceDialogue)
+  if indiceDialogue == 35:
+    time.sleep(2)
+    clear_text_area()
+    clear_face_area()
+    speaker.setVolume(2)
+    speaker.tone(1479, 400)
+    time.sleep(0.2)
+    speaker.tone(1479, 400)
+    speaker.tone(987, 200)
+    lcd.print("Game Over", 0, 198)
+    break
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
