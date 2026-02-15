@@ -39,4 +39,4 @@ Tout d'abord il faudra sur votre machine installer le langague PHP ainsi q'un se
 
 Pour test il fait, dans un navigateur, écrire dans la barre de recherche `localhost`, cela devrais afficher la page de apache.
 
-![image de la page apache une fois installé](/Splenchy/Retro-Pass/commandsGuide_webSite/medias/apache.png "page apache")
+![image de la page apache une fois installé](/commandsGuide_webSite/medias/apache.png "page apache")
