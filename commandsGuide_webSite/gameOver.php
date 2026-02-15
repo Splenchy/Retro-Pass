@@ -97,7 +97,7 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0,  shrink-to-fit=no"> -->
 
     <!-- Icon -->
-    <link rel='icon' type='image/png' href='./medias/iut.png' />
+    <link rel='icon' type='image/png' href='./medias/Retro-Pass.png' />
 
     <!-- Title -->
     <title>GameOver</title>
