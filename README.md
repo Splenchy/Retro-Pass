@@ -37,6 +37,12 @@ Tout d'abord il faudra sur votre machine installer le langague PHP ainsi q'un se
 
 4. Tester si apache fonctionne
 
-Pour test il fait, dans un navigateur, écrire dans la barre de recherche `localhost`, cela devrais afficher la page de apache.
+Pour tester cela il faut, dans un navigateur, écrire dans la barre de recherche `localhost`, cela devrais afficher la page de apache.
 
 ![image de la page apache une fois installé](/commandsGuide_webSite/medias/apache.png "page apache")
+
+**Étape 3 : Technologies**
+Dans les mini-jeux, nous utilison différentes technologies qu'il faudra aussi mettre en place. La première concerne le Snake,....................................................................................................
+
+Viendra ensuite notre fameux personnage : Miki qui est en fait un simple script sur un M5stack. Nous avons utilisé un M5 Stack Fire et codé le script en micropython depuis le site web : https://uiflow2.m5stack.com/.
+Dans le script du M5 Stack déposé, vous verrez que chacuns des dialogues de Miki sont en fait écrit dans un tableau de tableau. En effet, il était nous l'avons de cette manière car il fallait associé une expressions de Miki à chaque dialogue car elles varient. (Les différentes expréssions de Miki sont de le répertoire _Miki's_expressions_)
