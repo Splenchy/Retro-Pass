@@ -45,4 +45,8 @@ Pour tester cela il faut, dans un navigateur, écrire dans la barre de recherche
 Dans les mini-jeux, nous utilison différentes technologies qu'il faudra aussi mettre en place. La première concerne le Snake,....................................................................................................
 
 Viendra ensuite notre fameux personnage : Miki qui est en fait un simple script sur un M5stack. Nous avons utilisé un M5 Stack Fire et codé le script en micropython depuis le site web : https://uiflow2.m5stack.com/.
-Dans le script du M5 Stack déposé, vous verrez que chacuns des dialogues de Miki sont en fait écrit dans un tableau de tableau. En effet, il était nous l'avons de cette manière car il fallait associé une expressions de Miki à chaque dialogue car elles varient. (Les différentes expréssions de Miki sont de le répertoire _Miki's_expressions_)
+Dans le script du M5 Stack déposé, vous verrez que chacuns des dialogues de Miki sont en fait écrit dans un tableau de tableau. En effet, il était nous l'avons de cette manière car il fallait associé une expressions de Miki à chaque dialogue car elles varient. (Les différentes expréssions de Miki sont de le répertoire _Miki_Faces_)
+Dans le script donné, ous aurez les ligne de dialogue de l'escape Game original, libre à vous au niveau de les modifier comme bon vous semble. 
+Pour ce qui est des expréssions de Miki, afin de ne pas avoir trop de modifications à faire, il est recommandé de repecter le format suivant : une image png de taille 127x145 et sans fond. (Les expressions de base sont générées avec l'IA Chat GPT) 
+
+Afin de faciliter les choses, il y a une fonction
