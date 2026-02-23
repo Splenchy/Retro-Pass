@@ -48,11 +48,12 @@ Viendra ensuite notre fameux personnage : Miki qui est en fait un simple script 
 
 **Partie graphique (frontend)**
 
+La première choses que le joueur entendra sera la son de bienvenu de _Miki_, ce son est réalisé à l'aide de la fonction speaker.tone(), à qui l'on donne la fréquence (en hertz) et la durée (en miliseconde) du son qui sera joué. En complément, nous avons aussi la fonction speaker.setVolume(), pour le volume du son (allant de 0 à 10). 
 Dans le script du M5 Stack déposé, vous verrez que chacuns des dialogues de Miki sont en fait écrit dans un tableau de tableau. En effet, il était nous l'avons de cette manière car il fallait associé une expressions de Miki à chaque dialogue car elles varient. (Les différentes expréssions de Miki sont de le répertoire _Miki_Faces_)
 Dans le script donné, ous aurez les ligne de dialogue de l'escape Game original, libre à vous au niveau de les modifier comme bon vous semble. 
 Pour ce qui est des expréssions de Miki, afin de ne pas avoir trop de modifications à faire, il est recommandé de repecter le format suivant : une image png de taille 127x145 et sans fond. (Les expressions de base sont générées avec l'IA Chat GPT) 
 
-Pour rendre plus agréable le terminal de _Miki_, nous avons ajouter de la couleur, il y a du rose et du bleu. Ces 2 couleurs sont en fait des rectangle colorés, chacuns prennant toute la largeur de l'écran et la hauteur que nous voulions. Pour cela nous avons utilisé la fonction lcd.SJQKSJQKSJQ() dans laquelle nous spécifions la longueur, la hauteur et la couleur de la forme.
+Pour rendre plus agréable le terminal de _Miki_, nous avons ajouter de la couleur, il y a du rose et du bleu. Ces 2 couleurs sont en fait des rectangle colorés, chacuns prennant toute la largeur de l'écran et la hauteur que nous voulions. Pour cela nous avons utilisé la fonction lcd.rect() dans laquelle nous spécifions la longueur, la hauteur et la couleur de la forme.
 
 Afin que chacune des expressions de _Miki_ s'affichent correctement, nous utilison une fonction clear_face_area(). Cette fonction a pour but de simplement effacer ce qu'il y a d'affiché dans la zone reservé à l'affichage de l'expression de _Miki_. Nous avons fais la quasi même fonction pour la zone de dialogue : clear_text_area().
 
