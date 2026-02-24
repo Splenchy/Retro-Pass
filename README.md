@@ -48,7 +48,7 @@ Viendra ensuite notre fameux personnage : Miki qui est en fait un simple script 
 
 **Partie graphique (frontend)**
 
-La première choses que le joueur entendra sera la son de bienvenu de _Miki_, ce son est réalisé à l'aide de la fonction speaker.tone(), à qui l'on donne la fréquence (en hertz) et la durée (en miliseconde) du son qui sera joué. En complément, nous avons aussi la fonction speaker.setVolume(), pour le volume du son (allant de 0 à 10). Pour décider d'une mélodie, il n'y a qu'à se baser sur un tableau associant les note de musique (Do,Re, Mi...etc) à leur fréquence : 
+La première choses que le joueur entendra sera la son de bienvenu de _Miki_, ce son est réalisé à l'aide de la fonction speaker.tone(), à qui l'on donne la fréquence (en hertz) et la durée (en miliseconde) du son qui sera joué. En complément, nous avons aussi la fonction speaker.setVolume(), pour le volume du son (allant de 0 à 10). Pour décider d'une mélodie, il n'y a qu'à se baser sur un tableau associant les note de musique (Do,Re, Mi...etc) à leur fréquence : https://i0.wp.com/musicordes.fr/wp-content/uploads/2017/02/tableau-frequences-notes-hertz.png?resize=625%2C301&ssl=1
 
 
 Dans le script du M5 Stack déposé, vous verrez que chacuns des dialogues de Miki sont en fait écrit dans un tableau de tableau. En effet, nous l'avons fais de cette manière car il fallait associé une expressions de Miki à chaque dialogue car elles varient. (Les différentes expréssions de Miki sont de le répertoire _Miki_Faces_)
