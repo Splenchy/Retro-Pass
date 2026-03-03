@@ -60,6 +60,12 @@ Pour rendre plus agréable le terminal de _Miki_, nous avons ajouter de la coule
 
 Afin que chacune des expressions de _Miki_ s'affichent correctement, nous utilison une fonction clear_face_area(). Cette fonction a pour but de simplement effacer ce qu'il y a d'affiché dans la zone reservé à l'affichage de l'expression de _Miki_. Nous avons fais la quasi même fonction pour la zone de dialogue : clear_text_area().
 
+
+Le rendu devrait donner à peu près cela : 
+
+<img width="348" height="260" alt="image" src="https://github.com/user-attachments/assets/6b6afd09-0895-4f97-8833-48fc0fa0f88d" />
+
+
 **Programmation interne (backend)**
 
 Sur le M5Stack, le bouton de droit (boutonC) permet d'aller au dialogue suivant et le bouton de gauche permet d'aller aua dialogue précédent. 
