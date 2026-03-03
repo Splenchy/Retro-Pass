@@ -37,7 +37,7 @@ Tout d'abord il faudra sur votre machine installer le langague PHP ainsi q'un se
 
 4. Tester si apache fonctionne
 
-Pour tester cela il faut, dans un navigateur, écrire dans la barre de recherche `localhost`, cela devrais afficher la page de apache.
+Pour tester cela il faut, dans un navigateur, écrire dans la barre de recherche `localhost`, cela devrait afficher la page d'apache.
 
 ![image de la page apache une fois installé](/commandsGuide_webSite/medias/apache.png "page apache")
 
@@ -54,7 +54,7 @@ Vient ensuite les lumières rose qui sont allumées tout le long de la partie. P
 
 Dans le script du M5 Stack déposé, vous verrez que chacuns des dialogues de Miki sont en fait écrit dans un tableau de tableau. En effet, nous l'avons fais de cette manière car il fallait associé une expressions de Miki à chaque dialogue car elles varient. (Les différentes expréssions de Miki sont de le répertoire _Miki_Faces_)
 Dans le script donné, ous aurez les ligne de dialogue de l'escape Game original, libre à vous au niveau de les modifier comme bon vous semble. 
-Pour ce qui est des expréssions de Miki, afin de ne pas avoir trop de modifications à faire, il est recommandé de repecter le format suivant : une image png de taille 127x145 et sans fond. (Les expressions de base sont générées avec l'IA Chat GPT) 
+Pour ce qui est des expréssions de Miki, afin de ne pas avoir trop de modifications à faire, il est recommandé de respecter le format suivant : une image png de taille 127x145 et sans fond. (Les expressions de base sont générées avec l'IA Chat GPT) 
 
 Pour rendre plus agréable le terminal de _Miki_, nous avons ajouter de la couleur, il y a du rose et du bleu. Ces 2 couleurs sont en fait des rectangle colorés, chacuns prennant toute la largeur de l'écran et la hauteur que nous voulions. Pour cela nous avons utilisé la fonction lcd.rect() dans laquelle nous spécifions la longueur, la hauteur et la couleur de la forme.
 
@@ -71,6 +71,12 @@ Le rendu devrait donner à peu près cela :
 _Zone texte et zone visage du M5stack_
 
 
+À noter, bien que les différentes expressions sont données et écritent aux bons endroits dans le code du M5Stack, il reste à les placer aux bons endroits dans la mémoire même du de ce dernier. Si cela n'est pas fait, vous aurez le même résultat que ci-dessus, une zone réservée aux expressions dans expressions à l'intérieur.
+Pour déplacer les fichier image dans la mémoire du M5Stack, nous recommandons d'utiliser le site web [uiflow2](https://uiflow2.m5stack.) utilisé précédemment. En effet, il permet aussi de placer des fichier dans la mémoire du M5Stack en allant dans le terminal permettant d'exectuer le code :  
+                        <img width="100" height="100" alt="Capture d’écran du 2026-03-03 11-11-06" src="https://github.com/user-attachments/assets/9d1bc173-8a2f-4acb-a77f-6766ca3bc7df" />
+
+
+puis en séléctionnant le gesstionnaire de fichier et "Uploader un fichier".
 
 
 **Programmation interne (backend)**
