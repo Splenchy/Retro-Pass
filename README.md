@@ -63,7 +63,8 @@ Afin que chacune des expressions de _Miki_ s'affichent correctement, nous utilis
 
 Le rendu devrait donner à peu près cela : 
 
-<img width="348" height="260" alt="image" src="https://github.com/user-attachments/assets/6b6afd09-0895-4f97-8833-48fc0fa0f88d" />
+                                  <img width="348" height="260" alt="image" src="https://github.com/user-attachments/assets/5beeb4ab-5fdd-439b-85a9-e7874171bd11" />
+                                                                                  _Zones text et visage du M5stack_
 
 
 **Programmation interne (backend)**
