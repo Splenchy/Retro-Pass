@@ -4,16 +4,9 @@ from m5stack import speaker
 import neopixel 
 import os
 import time
-# -------------------------------------------------
-# 1. Fond général
-# -------------------------------------------------
-# -------------------------------------------------
-# 2. Bandeau violet rétro EN BAS avec "Miki"
-# -------------------------------------------------
-# Rectangle violet néon + coins arrondis
+
 lcd.rect(0, 180, 340, 60, 0, 0x1BFFFF)
 np = neopixel.NeoPixel(Pin(15), 10)
-  # position y=180 → tout en bas
 choice=""
 lcd.setTextColor(lcd.BLACK)
 dialogs_expressions=[
@@ -57,7 +50,7 @@ dialogs_expressions=[
   
   ]
 # -------------------------------------------------
-# 3. Zone à effacer pour le visage (au centre)
+# Zone à effacer pour le visage (au centre)
 # -------------------------------------------------
 def clear_face_area():
     lcd.rect(0, 0, 320, 180, 0xFF69B4, 0xFF69B4)   # efface uniquement le visage
@@ -98,10 +91,8 @@ def hearts():
     try:
         lcd.image(pos_x, 5, "/flash/img/heart.png")
     except:
-        # Fallback: draw text heart if image missing
         lcd.setTextColor(0xFF0066)
-  #lcd.image(x+1-5*life, 5, "/flash/img/heart.png")
-  #lcd.image(x+1-10*life, 5, "/flash/img/heart.png")
+
 
 #Écran de game over en cas de life = 0
 def gameOver():
@@ -136,7 +127,7 @@ def gameOver():
 
 
 
-# 4. Son de bienvenue
+# Son de bienvenue
 
 
 speaker.setVolume(2)
